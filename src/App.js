@@ -16,6 +16,25 @@ function App() {
 		setCurrentPage(index);
 	};
 
+	const previousPage = () => {
+		setCurrentPage((oldPage) => {
+			let prevPage = oldPage - 1;
+			if (prevPage < 0) {
+				prevPage = data.length - 1;
+			}
+			return prevPage;
+		});
+	};
+	const nextPage = () => {
+		setCurrentPage((oldPage) => {
+			let nextPage = oldPage + 1;
+			if (nextPage > data.length - 1) {
+				nextPage = 0;
+			}
+			return nextPage;
+		});
+	};
+
 	return (
 		<main>
 			<div className="section-title">
@@ -32,6 +51,9 @@ function App() {
 					' '
 				) : (
 					<div className="btn-container">
+						<button className="prev-btn" onClick={previousPage}>
+							{` <- prev`}
+						</button>
 						{data.map((item, index) => {
 							return (
 								<>
@@ -47,6 +69,9 @@ function App() {
 								</>
 							);
 						})}
+						<button className="next-btn" onClick={nextPage}>
+							{`next ->`}
+						</button>
 					</div>
 				)}
 			</section>
