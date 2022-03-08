@@ -1,5 +1,5 @@
 const paginate = (followers) => {
-	const itemPerPage = 6;
+	const itemPerPage = 7;
 	const pages = Math.ceil(followers.length / itemPerPage); // expected output :20
 
 	//Array.from is used to create iterables from objects

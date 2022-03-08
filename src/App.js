@@ -10,7 +10,11 @@ function App() {
 	useEffect(() => {
 		if (loading) return;
 		setPaginatedFollowers(data[currentPage]);
-	}, [loading]);
+	}, [loading, currentPage]);
+
+	const pageHandler = (index) => {
+		setCurrentPage(index);
+	};
 
 	return (
 		<main>
@@ -24,6 +28,27 @@ function App() {
 						return <Follower key={follower.id} {...follower} />;
 					})}
 				</div>
+				{loading ? (
+					' '
+				) : (
+					<div className="btn-container">
+						{data.map((item, index) => {
+							return (
+								<>
+									<button
+										key={index}
+										className={`page-btn ${
+											index === currentPage ? 'active-btn' : null
+										}`}
+										onClick={() => pageHandler(index)}
+									>
+										{index + 1}
+									</button>
+								</>
+							);
+						})}
+					</div>
+				)}
 			</section>
 		</main>
 	);
